@@ -1,24 +1,24 @@
 Cherrypy Mako Template
 ======================
 
-`Mako <http://www.makotemplates.org/>`_. template support for cherrypy.
-
-::
-
-    Mako is a template library written in Python.
-    It provides a familiar, non-XML syntax which compiles into Python modules for maximum performance.
+`Mako <http://www.makotemplates.org/>`_ template support for cherrypy.
 
 Installation
 ------------
+::
 
     pip install marbaloo_mako
 
 Usage
 -----
 
+::
+
     # templates/dir1/index.mak
     <h1>Today: ${today}</h1>
 
+
+::
 
     # app.py
     import os
@@ -39,4 +39,3 @@ Usage
                                     'tools.mako.directories': [os.path.join(root_path, 'templates/dir1')]
                                 }
                             })
-
