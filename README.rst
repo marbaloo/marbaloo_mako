@@ -1,7 +1,7 @@
 Cherrypy Mako Template
 ======================
 
-`Mako<http://www.makotemplates.org/>`_. template support for cherrypy.
+`Mako <http://www.makotemplates.org/>`_. template support for cherrypy.
 
 ::
 
