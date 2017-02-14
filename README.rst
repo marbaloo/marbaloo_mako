@@ -23,6 +23,7 @@ Usage
     # app.py
     import os
     import marbaloo_mako
+    import cherrypy
     from datetime import date
     cherrypy.tools.mako = marbaloo_mako.Tool()
 
