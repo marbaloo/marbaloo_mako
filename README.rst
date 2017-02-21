@@ -1,5 +1,5 @@
-Cherrypy Mako Template
-======================
+Marbaloo Mako
+=============
 
 `Mako <http://www.makotemplates.org/>`_ template support for cherrypy.
 
