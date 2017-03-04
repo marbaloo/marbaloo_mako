@@ -8,7 +8,7 @@ class Tool(cherrypy.Tool):
     def __init__(self):
         cherrypy.Tool.__init__(self, 'before_handler',
                                self.callable,
-                               priority=20)
+                               priority=40)
 
     def callable(self,
                  filename=None,
