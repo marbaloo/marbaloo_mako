@@ -26,6 +26,15 @@ class CPTest(helper.CPWebCase):
             def advanced(self):
                 return {'today': date.today()}
 
+            @cherrypy.expose
+            @cherrypy.tools.mako(filename='/advanced.mak')
+            def dynamic(self, page):
+                if page == 'simple':
+                    cherrypy.request.template = cherrypy.request.lookup.get_template('simple.mak')
+                    return {}
+                else:
+                    return {'today': date.today()}
+
         root_path = os.path.dirname(__file__)
         cherrypy.tree.mount(Root(), '/', {
                                 '/': {
@@ -52,6 +61,17 @@ class CPTest(helper.CPWebCase):
 
     def test_advanced(self):
         self.getPage("/advanced")
+        self.assertStatus('200 OK')
+        self.assertHeader('Content-Type', 'text/html;charset=utf-8')
+        self.assertBody('<span>today: %s</span>' % date.today())
+
+    def test_dynamic(self):
+        self.getPage("/dynamic?page=simple")
+        self.assertStatus('200 OK')
+        self.assertHeader('Content-Type', 'text/html;charset=utf-8')
+        self.assertBody('<h1>hello world</h1>')
+
+        self.getPage("/dynamic?page=advanced")
         self.assertStatus('200 OK')
         self.assertHeader('Content-Type', 'text/html;charset=utf-8')
         self.assertBody('<span>today: %s</span>' % date.today())
