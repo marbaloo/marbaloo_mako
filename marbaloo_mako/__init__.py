@@ -29,13 +29,13 @@ class Tool(cherrypy.Tool):
                                     input_encoding='utf8')
             self._lookups[key] = lookup
         cherrypy.request.lookup = lookup
-        # Replace the current handler.
-        cherrypy.request.template = template = lookup.get_template(filename)
-        inner_handler = cherrypy.serving.request.handler
+        cherrypy.request.template = lookup.get_template(filename)
 
+        # Replace the current handler.
+        inner_handler = cherrypy.serving.request.handler
         def wrapper(*args, **kwargs):
             context = inner_handler(*args, **kwargs)
-            response = template.render(**context)
+            response = cherrypy.request.template.render(**context)
             return response
 
         cherrypy.serving.request.handler = wrapper
